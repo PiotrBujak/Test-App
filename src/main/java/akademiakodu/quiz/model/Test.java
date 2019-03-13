@@ -11,7 +11,7 @@ public class Test {
     private Integer Id;
     private String name;
     // (mappedBy = "test") - nazwa klucza obcego po drugiej stronie, czyli w Klasie Question w tym przypadku
-    @OneToMany(mappedBy = "test") //Adnotacja z bazy danych (jeden test do wielu pytań)
+    @OneToMany(mappedBy = "test", cascade = CascadeType.ALL) //Adnotacja z bazy danych (jeden test do wielu pytań)
     private List<Question> questionList = new ArrayList<>(); //Lista Questionów
 
     public Test(String name) {
@@ -43,5 +43,10 @@ public class Test {
 
     public void setQuestionList(List<Question> questionList) {
         this.questionList = questionList;
+    }
+
+    public void addQuestion(Question question) {
+    question.setTest(this);
+    questionList.add(question);
     }
 }
