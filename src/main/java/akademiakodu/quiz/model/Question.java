@@ -1,6 +1,8 @@
 package akademiakodu.quiz.model;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Question {
@@ -51,4 +53,5 @@ public class Question {
     public void setId(Integer id) {
         Id = id;
     }
+
 }

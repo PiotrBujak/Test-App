@@ -3,6 +3,7 @@ package akademiakodu.quiz.controller;
 import akademiakodu.quiz.model.Question;
 import akademiakodu.quiz.model.Test;
 import akademiakodu.quiz.model.User;
+import akademiakodu.quiz.repository.QuestionRepository;
 import akademiakodu.quiz.repository.TestRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -16,11 +17,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class TestController {
     private User user = new User();
-    private Question question = new Question();
     private Integer currentQuestion;
 
     @Autowired
     private TestRepository testRepository;
+
+    @Autowired
+    private QuestionRepository questionRepository;
 
     @GetMapping("/tests/{id}/play")
     public String play(@PathVariable Integer id, ModelMap modelMap) {
@@ -34,8 +37,9 @@ public class TestController {
 
     @GetMapping("/tests/{id}/continue")
     public String continueTest(
-            @RequestParam(required = false)
-                    boolean correct, @PathVariable Integer id, ModelMap modelMap) {
+            @RequestParam(required = false) boolean correct,
+            @PathVariable Integer id,
+            ModelMap modelMap) {
         Test test = testRepository.findById(id).get();
         if (test.getQuestionList().get(currentQuestion).isCorrect() == correct) {
             user.addPoint();
@@ -51,4 +55,28 @@ public class TestController {
         return "test";
     }
 
+    @GetMapping("/")
+    public String findAll(ModelMap modelMap) {
+        modelMap.put("tests", testRepository.findAllSortById());
+        return "main";
+    }
+
+    @GetMapping("/add")
+    public String showTest() {
+        return "form";
+    }
+
+    @GetMapping("/new")
+    public String addTest(@RequestParam String name,
+                          @RequestParam String content,
+                          @RequestParam boolean correct) {
+        Test test = new Test(name);
+        Question question = new Question(content, correct);
+        test.addQuestion(question);
+        testRepository.save(test);
+        return "form";
+    }
+
 }
+
+

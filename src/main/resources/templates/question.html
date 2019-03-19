@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<form action="/addquestion">
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Content</th>
+            <th>Delete question</th>
+        </tr>
+        <tr th:each="question : ${questions}">
+            <td th:text="${question.id}"></td>
+            <td th:text="${question.content}"></td>
+            <td><a th:href="@{|/tests/${question.id}/delete|}">Delete Question</a></td>
+        </tr>
+    </table>
+    <label>Podaj pytanie:</label>
+    <input type="text" name="content"><br>
+    <p>Podaj prawidłowa odpowiedz</p><br>
+    <input type="radio" name="correct" value="true">True<br>
+    <input type="radio" name="correct" value="false">False<br>
+    <button type="submit">Wyslij</button>
+</form>
+
+</body>
+</html>

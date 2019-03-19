@@ -1,6 +1,8 @@
 package akademiakodu.quiz.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -49,4 +51,10 @@ public class Test {
     question.setTest(this);
     questionList.add(question);
     }
+
+    public void removeQuestion(Question question){
+        question.setTest(this);
+        questionList.remove(question);
+    }
+
 }
