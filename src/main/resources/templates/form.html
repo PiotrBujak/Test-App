@@ -1,23 +1,37 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
+<head th:replace="fragments/head :: head" xmlns:th="http://www.thymeleaf.org"></head>
 <body>
 
-Tworzenie TESTU
-
-<form action="/add">
-    <label>Dodaj Test:</label>
-    <input type="text" name="name"><br>
-    <label>Podaj pytanie:</label>
-    <input type="text" name="content"><br>
-    <p>Podaj prawidłowa odpowiedz</p><br>
-    <input type="radio" name="correct" value="true">True<br>
-    <input type="radio" name="correct" value="false">False<br>
-    <button type="submit" formaction="/new">Wyslij</button>
+<form action="/">
+    <button type="submit" class="btn btn-dark">Powrót</button>
 </form>
 
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            <table class="table table-dark">
+                <form action="/new">
+                    <tr>
+                        <th>Add Test</th>
+                        <th>Add Question</th>
+                        <th>Add Answer</th>
+                    </tr>
+                    <tr>
+                        <th><input type="text" name="name"></th>
+                        <th><input type="text" name="content"></th>
+                        <th>
+                            <input type="radio" name="correct" value="true">True<br>
+                            <input type="radio" name="correct" value="false">False<br>
+                        </th>
+                        <th>
+                            <button type="submit">Wyslij</button>
+                        </th>
+                    </tr>
+                </form>
+            </table>
+        </div>
+    </div>
+</div>
 </body>
 </html>

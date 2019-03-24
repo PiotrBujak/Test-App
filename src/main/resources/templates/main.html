@@ -1,37 +1,35 @@
 <!DOCTYPE html>
-
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
-
-<head>
-    <title>Bootstrap Example</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="style.css">
-</head>
+<head th:replace="fragments/head :: head" xmlns:th="http://www.thymeleaf.org"></head>
 <body>
+
+<form action="/add">
+    <button type="submit" class="btn btn-dark">Add new Test</button>
+</form>
+
 <div class="container">
-    <table class="table table-bordered">
-        <thead>
-        <tr>
-            <th>Id</th>
-            <th>Name</th>
-            <th>Dodaj pytanie</th>
-            <th>Przejdź do testu</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="test : ${tests}">
-            <td th:text="${test.id}">
-            <td th:text="${test.name}">
-            <td><a th:href="@{|/tests/${test.id}/add|}">Add Question</a></td>
-            <td><a th:href="@{|/tests/${test.id}/play|}">---></a></td>
-        </tr>
-        </tbody>
-    </table>
+    <div class="row">
+        <div class="col-sm-12">
+            <table class="table table-dark">
+                <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Add Question</th>
+                    <th>Start Test</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="test : ${tests}">
+                    <td th:text="${test.id}">
+                    <td th:text="${test.name}">
+                    <td><a th:href="@{|/tests/${test.id}/add|}">Add Question</a></td>
+                    <td><a th:href="@{|/tests/${test.id}/play|}">---></a></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
-<a href="/add">Dodaj nowy Test</a>
 </body>
 </html>

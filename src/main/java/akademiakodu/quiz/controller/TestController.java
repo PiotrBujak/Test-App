@@ -22,9 +22,6 @@ public class TestController {
     @Autowired
     private TestRepository testRepository;
 
-    @Autowired
-    private QuestionRepository questionRepository;
-
     @GetMapping("/tests/{id}/play")
     public String play(@PathVariable Integer id, ModelMap modelMap) {
         Test test = testRepository.findById(id).get();

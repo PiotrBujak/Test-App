@@ -1,5 +1,8 @@
 package akademiakodu.quiz.model;
 
+import akademiakodu.quiz.repository.TestRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -8,13 +11,16 @@ import java.util.List;
 
 @Entity
 public class Test {
+
+    @Autowired
+    private TestRepository testRepository;
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer Id;
     private String name;
-    // (mappedBy = "test") - nazwa klucza obcego po drugiej stronie, czyli w Klasie Question w tym przypadku
-    @OneToMany(mappedBy = "test", cascade = CascadeType.ALL) //Adnotacja z bazy danych (jeden test do wielu pytań)
-    private List<Question> questionList = new ArrayList<>(); //Lista Questionów
+    @OneToMany(mappedBy = "test", cascade = CascadeType.ALL)
+    private List<Question> questionList = new ArrayList<>();
 
     public Test(String name) {
         this.name = name;
@@ -48,13 +54,12 @@ public class Test {
     }
 
     public void addQuestion(Question question) {
-    question.setTest(this);
-    questionList.add(question);
+        question.setTest(this);
+        questionList.add(question);
     }
 
-    public void removeQuestion(Question question){
+    public void removeQuestion(Question question) {
         question.setTest(this);
         questionList.remove(question);
     }
-
 }

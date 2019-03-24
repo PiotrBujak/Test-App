@@ -11,12 +11,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import javax.jws.WebParam;
-
 @Controller
 public class QuestionController {
     private Integer id;
-    private Integer idq;
 
     @Autowired
     TestRepository testRepository;
@@ -37,18 +34,13 @@ public class QuestionController {
         Test test = testRepository.findById(id).get();
         test.addQuestion(new Question(content, correct));
         testRepository.save(test);
-        return "/tests/"+id+"/add";
+        return "redirect:/tests/"+id+"/add";
     }
 
     @GetMapping("/tests/{idq}/delete")
-    public String deleteQuestion(@PathVariable int idq,
-                                 ModelMap modelMap){
-        modelMap.put("questions", questionRepository.findQuestionsByTestId(id));
-        this.idq = idq;
-        Test test = testRepository.findById(id).get();
-        test.removeQuestion(questionRepository.findById(idq).get());
-        testRepository.save(test);
-
-        return "/question";
+    public String deleteQuestion(@PathVariable int idq){
+        questionRepository.deleteById(idq);
+        return "redirect:/tests/"+id+"/add";
     }
+
 }

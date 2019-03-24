@@ -13,4 +13,7 @@ public interface QuestionRepository extends JpaRepository<Question, Integer> {
     @Query("SELECT q FROM Question q WHERE test_id = ?1")
     List<Question> findQuestionsByTestId(int test_id);
 
+    @Query("SELECT q FROM Question q WHERE q.id = ?1")
+    Question findQuestion(int id);
+
 }
