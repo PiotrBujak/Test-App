@@ -3,7 +3,6 @@ package akademiakodu.quiz.controller;
 import akademiakodu.quiz.model.Question;
 import akademiakodu.quiz.model.Test;
 import akademiakodu.quiz.model.User;
-import akademiakodu.quiz.repository.QuestionRepository;
 import akademiakodu.quiz.repository.TestRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;

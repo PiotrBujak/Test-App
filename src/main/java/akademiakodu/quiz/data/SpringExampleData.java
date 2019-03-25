@@ -27,10 +27,10 @@ public class SpringExampleData implements CommandLineRunner {
         test.addQuestion(new Question("Czy java ma klasę integer?",false));
         test.addQuestion(new Question("Czy java ma klasę buldożer?",false));
 
-        test1.addQuestion(new Question("Czy Kot jest chujem?",true));
-        test1.addQuestion(new Question("Czy Pies jest chujem?",false));
+        test1.addQuestion(new Question("Czy Kot ma ogon?",true));
+        test1.addQuestion(new Question("Czy Pies jest najlepszym przyjacielem człowieka?",true));
         test1.addQuestion(new Question("Czy Złota rybka jest złota?",true));
-        test1.addQuestion(new Question("Czy w krakowie pada",true));
+        test1.addQuestion(new Question("Czy foki mają uszy?",true));
 
         test2.addQuestion(new Question("Pomidor",true));
         test2.addQuestion(new Question("Pomidor",true));

@@ -12,9 +12,6 @@ import java.util.List;
 @Entity
 public class Test {
 
-    @Autowired
-    private TestRepository testRepository;
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer Id;
